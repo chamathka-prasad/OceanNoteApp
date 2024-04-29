@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { HomeUi } from "./Home";
+import { StyleSheet } from "react-native";
+import { AddNoteUi } from "./AddNote";
+import { RegiaterUi } from "./Register";
+import { LogInUi } from "./LogIna";
+import { HubUi } from "./Hub";
 
-export default function App() {
+
+
+const Stack = createNativeStackNavigator();
+
+export default function app() {
+ 
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+      <Stack.Screen name="Hub" component={HubUi}  options={{ headerShown: false }} />
+      <Stack.Screen name="LogIn" component={LogInUi} options={{ headerShown: false }}/>
+            <Stack.Screen
+              name="Home"
+              component={HomeUi}
+              options={{ headerShown: false}}
+            />
+      
+            <Stack.Screen name="Register" component={RegiaterUi} />
+            <Stack.Screen name="AddNote" component={AddNoteUi} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  nav: {
+    backgroundColor: "yellow",
   },
 });
